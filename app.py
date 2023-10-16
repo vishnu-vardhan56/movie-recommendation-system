@@ -1,6 +1,6 @@
 import streamlit as st
-import pickle
-
+#import pickle
+import pandas as pd
 
 def recommend(movie):
     movie_index = movies_list[movies_list['title'] == movie].index[0]
@@ -10,8 +10,11 @@ def recommend(movie):
     for i in movies_list2:
         recommend_moives.append(movies_list.iloc[i[0]].title)
     return recommend_moives
-similarity = pickle.load((open('similarity.pkl','rb')))
-movies_list = pickle.load(open('movies.pkl','rb'))
+
+movies_list = pd.read_pickle("movies.pkl")
+similarity = pd.read_pickle("similarity.pkl")
+#similarity = pickle.load((open('similarity.pkl','rb')))
+#movies_list = pickle.load(open('movies.pkl','rb'))
 movies_list1 = movies_list['title'].values
 st.title('Movie Recommender System')
 
